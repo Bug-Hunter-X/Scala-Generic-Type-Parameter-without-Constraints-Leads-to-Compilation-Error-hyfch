@@ -1,0 +1,36 @@
+```scala
+class MyClass[T](val value: T) {
+  def printValue(): Unit = {
+    println(value)
+  }
+}
+
+object Main extends App {
+  val myInt = new MyClass(10)
+  myInt.printValue() // Prints 10
+
+  val myString = new MyClass("Hello")
+  myString.printValue() // Prints Hello
+
+  // This will compile and run successfully
+  val myStringList = new MyClass(List("a", "b", "c"))
+  myStringList.printValue() // Prints List(a, b, c)
+}
+
+// Add a constraint that T must be a subtype of AnyVal
+//This prevents List[Int] from working
+class MyClass2[T <: AnyVal](val value: T) {
+  def printValue(): Unit = {
+    println(value)
+  }
+}
+
+object Main2 extends App {
+  val myInt2 = new MyClass2(10)
+  myInt2.printValue()
+
+  //This will not compile since String is not a subtype of AnyVal
+  //val myString2 = new MyClass2("Hello")
+  //myString2.printValue()
+}
+```
